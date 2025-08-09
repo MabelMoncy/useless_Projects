@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/game.css">
+    <title>Food Emoji Game</title>
+    
+</head>
+<body>
+    <div class="header">
+        <h1>Find Our Names</h1>
+        <p>Can you name these delicious foods? Type the name and click check!, May be this time your answer will be correct</p>
+    </div>
+    <div class="emoji-container">
+        <div class="emoji-card">
+            <span class="emoji">🍎</span>
+            <div class="input-group">
+                <input type="text" class="emoji-input" placeholder="What food is this?">
+                <button class="check-btn" onclick="checkAnswer(this, 'apple')">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+        
+        <div class="emoji-card">
+            <span class="emoji">🍌</span>
+            <div class="input-group">
+                <input type="text" class="emoji-input" placeholder="What food is this?">
+                <button class="check-btn" onclick="checkAnswer(this, 'banana')">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+        
+        <div class="emoji-card">
+            <span class="emoji">🍕</span>
+            <div class="input-group">
+                <input type="text" class="emoji-input" placeholder="What food is this?">
+                <button class="check-btn" onclick="checkAnswer(this, 'pizza')">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+        
+        <div class="emoji-card">
+            <span class="emoji">🍔</span>
+            <div class="input-group">
+                <input type="text" class="emoji-input" placeholder="What food is this?">
+                <button class="check-btn" onclick="checkAnswer(this, 'hamburger')">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+        
+        <div class="emoji-card">
+            <span class="emoji">🍰</span>
+            <div class="input-group">
+                <input type="text" class="emoji-input" placeholder="What food is this?">
+                <button class="check-btn" onclick="checkAnswer(this, 'cake')">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+        
+        <div class="emoji-card">
+            <span class="emoji">🍪</span>
+            <div class="input-group">
+                <input type="text" class="emoji-input" placeholder="What food is this?">
+                <button class="check-btn" onclick="checkAnswer(this, 'cookie')">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+        
+        <div class="emoji-card">
+            <span class="emoji">🍓</span>
+            <div class="input-group">
+                <input type="text" class="emoji-input" placeholder="What food is this?">
+                <button class="check-btn" onclick="checkAnswer(this, 'strawberry')">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+        
+        <div class="emoji-card">
+            <span class="emoji">🥕</span>
+            <div class="input-group">
+                <input type="text" class="emoji-input" placeholder="What food is this?">
+                <button class="check-btn" onclick="checkAnswer(this, 'carrot')">Check Answer</button>
+                <div class="feedback"></div>
+            </div>
+        </div>
+    </div>
+    <h2 class="game-over">Game Over🛑</h2>
+    <button onclick="thankyou_page()">EXIT</button>
+    <script>
+        function thankyou_page()
+        {
+            window.open("thanks.html","_blank");
+        }
+        function checkAnswer(button, correctAnswer) {
+            const input = button.parentElement.querySelector('.emoji-input');
+            const feedback = button.parentElement.querySelector('.feedback');
+            const userAnswer = input.value.toLowerCase().trim();
+            
+            if(userAnswer === ""){
+                feedback.textContent="You have not entered anything. Please enter the answer!";
+                feedback.className = "feedback incorrect";
+                return;
+            }
+
+            else if (userAnswer === correctAnswer) {
+                feedback.textContent = "It's correct! Well done! 🎉";
+                feedback.className = 'feedback correct';
+            } else {
+                feedback.textContent = `It's not correct. The correct answer is: ${correctAnswer}`;
+                feedback.className = 'feedback incorrect';
+            }
+        }
+        
+        // Allow Enter key to check answer
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('emoji-input')) {
+                const button = e.target.parentElement.querySelector('.check-btn');
+                button.click();
+            }
+        });
+    </script>
+</body>
+</html>
